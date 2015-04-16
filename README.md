@@ -6,7 +6,7 @@ A platform for browsing the top free and paid android games and engage in real-t
 ###Introduction
 There are a wide variety of games available on the Google Play Store. But there is no convenient way for gamers to interact with other players of the games they're interested in. The review section is currently the main way by which the gamers interact.
 
-Through this project, we develop a game called Gold Rush and we provide a platform for the gamers to interact in real time. This platform has been expanded to work with all the top games from Google Play Store.
+Through this project, I provide a platform for the gamers to interact in real time. This platform has been expanded to work with all the top games from Google Play Store.
 
 The users would login to the application using Google authentication and browse through the list of top mobile games. The games are listed according to the ranking in the Play Store. The users can select a game and view more details about it like the developer info, user rating, description, price, logo, etc. They can also interact with other players in real time in the messages section.
 
