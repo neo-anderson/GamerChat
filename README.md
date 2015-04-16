@@ -3,6 +3,17 @@ A platform for browsing the top free and paid android games and engage in real-t
 
 **Firebase, AngularJS, AngularFire, Java**
 
+###Challenges
+####Unavailability of API
+Official Google Play API does not support searching and retrieving of application information. We tried using unofficial python n java APIs like egirault API and Android Market API. These libraries use depreciated functions and hence, do not work anymore. 42matters is the only solution that seems to offer the required features, but is a paid service.
+
+So, we wrote a crawler that scrapes the Play Store for top free and paid games. It extracts all the required information about the games and stores it in the backend. This crawler was developed in Java using jSoup library.
+
+####Realtime Updates
+Finding the right backend technology that allows real-time updates to facilitate live discussion was a challenge.
+
+For backend architecture, we considered various options. Parse was a good option but it does not support real time updates. socket.io was perfect for chat message transfer, but it does not store data or state. Hence, we finalized Firebase as the backend because it supports realtime data transfer and has a nice AngularJS API with three-way data binding.
+
 ###Approach
 
 ####Data Collection
