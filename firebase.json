@@ -1,0 +1,9 @@
+{
+  "firebase": "sweltering-inferno-7806",
+  "public": "GamerChat",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**"
+  ]
+}

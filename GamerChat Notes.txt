@@ -1,0 +1,107 @@
+
+find javascript method to load more games
+convert index to key - using packagenames
+user authen, authorize
+security
+Mobile design
+expand to more games
+review section
+
+androidID : 3e8cfe2be4e58019
+
+To get top apps
+http://ctrlq.org/code/19516-screen-sraping-google-play-store
+
+
+thread sleep to keep connection alive cos java terminates before data transfer
+no API, crawl with jsoup
+Parse - no real time. socket.io - no data/state. firebase
+Denormalize and store to avoid long downloads
+Firebase hosting
+Crawl g play with jsoup
+a tags won't work without target="_self" if html5 mode is true for angular
+scroll set to bottom - nothing worked except scroll glue
+error loading index page cos scroll glue not included even though it's not even being used!
+($injector:modulerr)
+
+
+fb.child("enthu").child("kure").setValue("venam");
+		
+		// Keep the thread alive until the operation completes.
+		while(true) {
+		     try {
+				Thread.sleep(10000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} //Sleep 10 seconds
+		}
+
+
+javascript - substring to get portion of text
+data.$id to get id
+game in games - ng-repeat
+ng-show condition
+
+read a single object with firebaseobject. For example, one game object and its properties.
+{"$id":"114","$priority":null,"dev":"Ironhide Game Studio","devUrl":"https://play.google.com/store/apps/developer?id=Ironhide+Game+Studio","imageLarge":"https://lh3.ggpht.com/uzAT94MJEQSq-N5qh9XfBbTtEhAJoVlLinbcZYbjHVF6YdylSdpyYuEqen6kImkzdTM=w340","imageSmall":"https://lh3.ggpht.com/uzAT94MJEQSq-N5qh9XfBbTtEhAJoVlLinbcZYbjHVF6YdylSdpyYuEqen6kImkzdTM=w170","price":"$2.99","rank":"55","ratingString":" Rated 4.8 stars out of five stars ","ratingValue":"95.0667953491211%","title":"Kingdom Rush Origins","url":"https://play.google.com/store/apps/details?id=com.ironhidegames.android.kingdomrushorigins"}
+Then we can get values for game.title, game.imageLarge, etc.
+desc.$value - in case it has no key value pair
+
+If we use firebasearray for this, we will get something like
+[{$value:"114", $id:"$id"},{$value:"Ironhide Game Studio", $id: "dev"},...]
+
+Rather, we should use firebasearray to get an array or list of items. For example, array of such games. Then we would use ng-repeat game in games to get each game.
+
+
+AngularFire - 
+https://www.youtube.com/watch?v=e4yUTkva_FM
+It won't work just like that.
+If {{}} are not being rendered properly, either you forgot ng-app or angular is not linked properly or app.js is not linked properly.
+If they are, then probably you missed a semicolon or something in the script. Test each line.
+Firebase API has changed, you have to directly use Firebaseobject or FirebaseArray. In the video, he's using it as an array.
+If you import firebaseobject, $add will throw undefined exception. 
+http://stackoverflow.com/questions/26435066/angularfire-add-typeerror-undefined-is-not-a-function
+
+
+
+
+
+
+
+
+
+
+
+
+An application for browsing top free or paid android games and engage in real-time game-specific discussion with players around the world.
+<Write an abstract about how players are currently only able to read reviews and not engage in chat>
+
+Challenges -
+1) Official Google Play API does not support searching and retrieving
+Tried unofficial python n java APIs like egirault API, android market api. These libraries use depreciated API and hence do not work.
+42matters is the only solution that seemed to offer the required function, but is a paid service.
+So, we wrote a crawler that scrapes the Play Store for top free and paid games. This crawler was developed in Java using jSoup library.
+
+2) Finding the right backend technology that allows real-time updates to facilitate live discussion.
+For backend, we considered various options. Parse was a good option but it does not support real time updates. socket.io was perfect for chat message transfer, but it does not store data or state. Hence, we finalized Firebase as the backend.
+
+
+Approach
+Java play store crawler extracts all the available information about the games and stores it in Firebase using its Java API. Since Java program terminates before the data is completely stored in the firebase instance, we keep the connection alive by setting the running thread to sleep.
+
+The web application was developed using AngularJS and Bootstrap. The application was then hosted to Firebase application server using Firebase CLI.
+
+To reduce impact to the end user and minimize loading time, data is denormalized and stored in separate sections called messages, details and gamesList. This way, only the required data is downloaded to the client machine.
+
+The user interface was developed using Bootstrap and the design is responsive in nature and adapts to the browser window size.
+
+
+Planned work-
+User authentication and authorization
+Security rules for read/write
+Usecase - Mobile devices
+
+
+
+

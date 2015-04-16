@@ -1,0 +1,87 @@
+<html ng-app="gamerChat">
+<head>
+<title>Gamer Chat</title>
+
+	<!-- AngularJS -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+	<!-- Firebase -->
+	<script src="https://cdn.firebase.com/js/client/2.2.2/firebase.js"></script>
+	<!-- AngularFire -->
+	<script src="https://cdn.firebase.com/libs/angularfire/1.0.0/angularfire.min.js"></script>
+	<!-- Setting up base for locationProvider, to read in the parameters from the URL -->
+	<base href="/" />
+	<script src="app.js"></script> 
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	<script src="https://cdn.rawgit.com/Luegg/angularjs-scroll-glue/v2.0.4/src/scrollglue.js"></script>
+	
+</head>
+
+<body ng-controller="GamerChat" >
+
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="collapse navbar-collapse" >
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="https://sweltering-inferno-7806.firebaseapp.com/index.html" target="_self">Home</a></li>
+			</ul>
+			
+			<ul class="nav navbar-nav navbar-right">
+		        <li><a href="#">Logout</a></li>
+		    </ul>
+			</div>
+			</div>
+	</nav>
+	<div class="container">
+	<div class="col-sm-5">
+		<div class="text-center">
+		<img src="{{game.imageLarge}}"/>
+	    <h2>{{game.title}}</h2>
+	    </div>
+	    
+	    <dl class="dl-horizontal">
+	    	<dt>Play Store Title</dt>
+	    	<dd><a href="{{game.url}}" target="_blank">{{game.title}}</a></dd>
+	    	<dt>Rank</dt>
+	    	<dd>{{game.rank}}</dd>
+	    	<dt>Rating</dt>
+	    	<dd>{{game.ratingValue.substring(0,5)}}%, {{game.ratingString}}</dd>
+			<dt>Developer</dt>
+	    	<dd><a href="{{game.devUrl}}" target="_blank">{{game.dev}}</a></dd>
+	    	<dt>Price</dt>
+	    	<dd>{{game.price}}</dd>
+	    	<dt>Description</dt>
+	    	<dd class="text-justify">{{desc.$value.substring(0,270)}}...<br /><a class="btn btn-primary" href="{{game.url}}" target="_blank">Read More</a></dd>
+	    </dl>
+	    
+	    </div>
+	    
+	    <div class="col-sm-2 col-md-1"></div>
+	    <div class="col-sm-5 col-md-6">
+	    <h3>Chat</h3>
+	    <div id="comments">
+	    	
+			<div id="chatScroller" style="height:70%;overflow:auto" scroll-glue>
+			    <div ng-repeat="comment in comments" ng-class="{'focus' : $last }">
+					<b>{{comment.from}}</b>: {{comment.body}}
+					<a id="bottom"></a>
+				</div>
+			</div>
+			
+		</div><br/>
+		<div id="input" style="margin-bottom:20px;">
+			<input class="form-control" ng-model="newComment" ng-keydown="addComment($event)" placeholder="Enter message">
+			<!-- <textarea ng-model="newComment" ng-keydown="addComment($event)"></textarea> -->
+		</div>
+		</div>
+	</div>
+</body>
+</html>

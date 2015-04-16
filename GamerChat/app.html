@@ -1,0 +1,48 @@
+<html ng-app="gamerChat">
+<head>
+	<title>Gamer Chat</title>
+	<!-- AngularJS -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+	<!-- Firebase -->
+	<script src="https://cdn.firebase.com/js/client/2.2.2/firebase.js"></script>
+	<!-- AngularFire -->
+	<script src="https://cdn.firebase.com/libs/angularfire/1.0.0/angularfire.min.js"></script>
+	<script src="app.js"></script>
+</head>
+<body ng-controller="GamerChat">
+	<img src="https://lh3.googleusercontent.com/Ac-5bgcPUDZZjDDv1szBnhU2yBp9x37_MX6FVtVWXxExu4uuLA61O-EnbEP_yvCcC9DV=w170"/>
+	<h1 ng-controller="GameNameCtrl">{{gameName}}</h1>
+	<div id="comments">
+		<div class="comment" ng-repeat="comment in comments">
+			<b>{{comment.from}}</b>: {{comment.body}}
+		</div>
+	</div>
+	<div id="input">
+		<textarea ng-model="newComment" ng-keydown="addComment($event)"></textarea>
+	</div>
+
+	<script>
+	var app = angular.module("gamerChat", ["firebase"]);
+app.controller("GamerChat", ["$scope", "$firebaseObject", 
+	function($scope, $firebaseObject) {
+	  var ref = new Firebase("https://sweltering-inferno-7806.firebaseio.com/");
+	  // download the data into a local object
+	  $scope.comments = $firebaseObject(ref);
+	  $scope.username = 'Guest' + Math.floor(Math.random * 100);
+	  $scope.addComment = function(e){
+	  	if (e.keyCode != 13) return; //Ignore if not return key
+	  	$scope.comments.$add({
+	  		game: $scope.gameName;
+	  		from: $scope.username;
+	  		body: $scope.newComment;
+	  	});
+	  	$scope.newComment = "";
+  	  }
+	}
+]);
+function GameNameCtrl($scope){
+       $scope.gameName="Worms!";
+  }
+	</script>
+</body>
+</html>
