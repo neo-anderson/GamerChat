@@ -7,8 +7,6 @@ Mobile design
 expand to more games
 review section
 
-androidID : 3e8cfe2be4e58019
-
 To get top apps
 http://ctrlq.org/code/19516-screen-sraping-google-play-store
 
@@ -62,15 +60,6 @@ If they are, then probably you missed a semicolon or something in the script. Te
 Firebase API has changed, you have to directly use Firebaseobject or FirebaseArray. In the video, he's using it as an array.
 If you import firebaseobject, $add will throw undefined exception. 
 http://stackoverflow.com/questions/26435066/angularfire-add-typeerror-undefined-is-not-a-function
-
-
-
-
-
-
-
-
-
 
 
 
